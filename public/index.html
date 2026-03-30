@@ -1,51 +1,1042 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting started with Netlify Edge Functions</title>
-
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HTML Image, Link & Nested List - Teacher's Corner</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;700;800&display=swap" rel="stylesheet">
+    
     <style>
-      * {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-          "Open Sans", "Helvetica Neue", sans-serif;
-      }
+        /* === Projector & Mobile Height-Optimized === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
 
-      body {
-        max-width: 600px;
-        margin: auto;
-        line-height: 1.3;
-      }
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow: hidden;
+            width: 100vw;
+            height: 100dvh;
+            touch-action: none;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: clamp(5px, 2vh, 15px) clamp(15px, 4vw, 30px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+        }
+
+        .brand {
+            color: #00e5ff;
+            font-size: clamp(1rem, 2.5vh, 1.8rem);
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .fs-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #555;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: clamp(0.7rem, 2vh, 1.1rem);
+            transition: 0.3s;
+        }
+        
+        .fs-btn:hover { background: #fff; color: #000; }
+
+        /* Slider Engine */
+        #slider {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease-out;
+        }
+
+        .slide {
+            flex: 0 0 100vw; 
+            width: 100vw;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(10px, 2vh, 30px) clamp(10px, 3vw, 20px);
+            background: radial-gradient(circle at center, #0B1120, #000000);
+            box-sizing: border-box;
+        }
+
+        /* Main Card Container */
+        .card {
+            background: #0f111a;
+            border: 2px solid #333;
+            border-top: 6px solid #ffcc00;
+            padding: clamp(25px, 4vh, 40px) clamp(15px, 3vw, 30px);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255, 204, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 85vh;
+            max-height: 85vh;
+            position: relative;
+            margin-top: 4vh; 
+        }
+
+        /* Challenge Badge */
+        .badge {
+            background: #ffcc00;
+            color: #000;
+            padding: 4px 15px;
+            border-radius: 30px;
+            font-size: clamp(0.9rem, 2vh, 1.3rem);
+            font-weight: 800;
+            position: absolute;
+            top: 0;
+            transform: translateY(-50%);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+            white-space: nowrap;
+        }
+        .badge.reverse { background: #f43f5e; color: #fff; }
+        .badge.concept { background: #38BDF8; color: #000; }
+
+        .question {
+            font-size: clamp(1rem, 3vh, 1.8rem);
+            font-weight: 800;
+            color: #4ADE80;
+            margin-bottom: clamp(10px, 2vh, 15px);
+            line-height: 1.3;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* Concept Card Specific */
+        .concept-text {
+            font-size: clamp(1.1rem, 3vh, 1.8rem);
+            color: #F8FAFC;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: left;
+        }
+        .concept-highlight { color: #FBBF24; font-weight: bold; font-size: 1.2em;}
+        .concept-box {
+            background: #1E293B; border: 2px dashed #38BDF8; padding: 15px; border-radius: 15px; width: 100%; margin-top: 10px; text-align: left;
+        }
+
+        /* === Authentic Computer Browser Mockup === */
+        .browser-window {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            margin-bottom: clamp(10px, 2vh, 15px);
+            border: 1px solid #444;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            min-height: 0;
+        }
+
+        .browser-header {
+            background: #e2e8f0;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #cbd5e1;
+            flex-shrink: 0;
+        }
+
+        .mac-dots { display: flex; gap: 6px; }
+        .mac-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .mac-dot.red { background: #ff5f56; }
+        .mac-dot.yellow { background: #ffbd2e; }
+        .mac-dot.green { background: #27c93f; }
+
+        .browser-tab-title {
+            background: #ffffff;
+            padding: 3px 12px;
+            border-radius: 6px;
+            font-size: clamp(0.7rem, 1.8vh, 0.9rem);
+            color: #333;
+            border: 1px solid #cbd5e1;
+            font-family: sans-serif;
+            font-weight: bold;
+            max-width: 40%;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+
+        .address-bar {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 3px 12px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-family: sans-serif;
+            font-size: clamp(0.7rem, 1.8vh, 0.9rem);
+            border: 1px solid #cbd5e1;
+        }
+
+        .browser-content {
+            padding: clamp(10px, 3vh, 25px);
+            background: #ffffff;
+            color: #000000;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: clamp(1.2rem, 3vh, 2.5rem); 
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.4;
+            overflow-wrap: break-word;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .browser-content.dark-mode { background-color: #111; color: #fff; }
+
+        /* HTML Elements inside Mockup */
+        .browser-content h1 { font-size: 1.8em; margin-bottom: 0.2em; font-weight: bold;}
+        .browser-content h2 { font-size: 1.4em; margin-bottom: 0.2em; font-weight: bold;}
+        .browser-content p { font-size: 1em; margin-bottom: 0.5em;}
+        .browser-content ul, .browser-content ol { margin-left: 1.5em; margin-bottom: 0.5em; }
+        .browser-content li { margin-bottom: 0.2em; }
+        .browser-content a { color: #2563eb; text-decoration: underline; cursor: pointer; font-weight: bold; }
+        .browser-content a:hover { color: #1d4ed8; }
+        .browser-content hr { border: 0; border-top: 3px solid currentColor; width: 100%; margin: 10px 0;}
+        .browser-content .img-placeholder { display: inline-flex; align-items: center; justify-content: center; background: #e2e8f0; border: 2px dashed #94a3b8; color: #64748b; font-family: sans-serif; font-size: 1rem; text-align: center; padding: 10px;}
+
+        /* Code Question Box (For Reverse Challenges) */
+        .code-question-box {
+            width: 100%;
+            background: #1e1e2f;
+            border-radius: 12px;
+            border: 2px solid #334155;
+            padding: clamp(15px, 3vh, 25px);
+            margin-bottom: clamp(10px, 2vh, 15px);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: clamp(1.1rem, 2.8vh, 2rem);
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .tag { color: #00e5ff; }
+        .attr { color: #4ADE80; }
+        .val { color: #FBBF24; }
+        .text { color: #ffffff; font-family: monospace;}
+
+        /* Show Answer Button */
+        .show-ans-btn {
+            background: #1a1a2e;
+            border: 2px solid #00e5ff;
+            color: #00e5ff;
+            padding: clamp(8px, 1.5vh, 12px) clamp(20px, 4vw, 30px);
+            font-size: clamp(1rem, 2.5vh, 1.5rem);
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: clamp(5px, 1vh, 10px);
+            box-shadow: 0 5px 15px rgba(0,229,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .show-ans-btn:hover { background: #00e5ff; color: #000; box-shadow: 0 0 20px rgba(0, 229, 255, 0.6); }
+
+        /* Answer Code block */
+        .answer {
+            font-size: clamp(0.9rem, 2.5vh, 1.6rem); 
+            font-weight: bold;
+            color: #ff1744; 
+            display: none;
+            background: #1e1e2f;
+            padding: clamp(10px, 2vh, 20px);
+            border-radius: 12px;
+            border: 1px solid #333;
+            border-left: 6px solid #ff1744;
+            animation: popIn 0.3s ease-out;
+            width: 100%;
+            font-family: monospace;
+            text-align: left;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            line-height: 1.3;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            max-height: 35vh;
+            overflow-y: auto;
+        }
+
+        .answer.reverse-ans {
+            background: transparent; border: none; padding: 0; height: 100%; max-height: none;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Navigation Controls */
+        .controls {
+            position: fixed;
+            bottom: clamp(5px, 1.5vh, 15px);
+            left: 0; width: 100%;
+            display: flex; justify-content: center; align-items: center;
+            gap: clamp(15px, 4vw, 40px);
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: #1a1a2e; border: 2px solid #444; color: white;
+            width: clamp(35px, 6vh, 50px); height: clamp(35px, 6vh, 50px);
+            font-size: clamp(1rem, 2.5vh, 1.5rem); border-radius: 50%;
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: #ffcc00; color: #000; border-color: #ffcc00; }
+
+        .counter {
+            font-size: clamp(0.9rem, 2vh, 1.3rem); font-weight: bold;
+            background: rgba(0,0,0,0.8); padding: 6px 15px; border-radius: 30px; border: 1px solid #333;
+        }
+
+        /* Intro & Outro */
+        .intro-title { color: #ffcc00; font-size: clamp(1.8rem, 5vh, 4rem); font-weight: 800; margin-bottom: 10px; }
+        .intro-subtitle { color: #00e5ff; font-size: clamp(1.2rem, 3vh, 2rem); font-weight: 700; margin-bottom: 20px; }
+        
+        .outro-title { color: #00e5ff; font-size: clamp(1.8rem, 5vh, 3.5rem); font-weight: 800; margin-bottom: 10px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .outro-instructor { color: #ffcc00; font-size: clamp(1rem, 2.5vh, 1.8rem); font-weight: 600; margin-bottom: 15px; max-width: 80%; line-height: 1.4;}
+        .outro-phone { color: #00e676; font-size: clamp(1.5rem, 4vh, 3rem); font-weight: 900; background: rgba(0,230,118,0.1); padding: 10px 30px; border-radius: 50px; border: 2px solid #00e676; display: inline-block; margin-top: 5px;}
+
+        /* Welcome Overlay */
+        #welcome-screen {
+            position: fixed; top:0; left:0; width:100vw; height:100dvh; background: #050505;
+            z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
+        }
+        .start-btn {
+            background: #00e5ff; color: #000; border: none; padding: 12px 30px; font-size: clamp(1.2rem, 3.5vh, 2rem); font-weight: bold; border-radius: 50px; cursor: pointer; box-shadow: 0 0 20px rgba(0,229,255,0.5); margin-top: 30px;
+        }
     </style>
-  </head>
-  <body>
-    <h1>Getting started with Netlify Edge Functions</h1>
-    <p>Hello and welcome to the tutorial!</p>
-    <p>This tutorial will take you through using Edge Functions on Netlify to build the following URLs:</p>
+</head>
+<body>
 
-    <div>
-      <h2>1. Hello, world</h2>
-      <p>
-        We'll write an Edge Function to serve the text
-        <code>Hello, World from the edge!</code>
-      </p>
-      <a href="/hello">/hello</a>
+    <!-- Start Overlay -->
+    <div id="welcome-screen">
+        <h1 style="color:#ffcc00; font-size: clamp(2rem, 5vh, 4rem); margin-bottom: 10px;">Teacher's Corner</h1>
+        <p style="color:#fff; font-size: clamp(1.2rem, 3vh, 2rem);">Image, Link & Nested List Masterclass</p>
+        <button class="start-btn" onclick="startPresentation()">▶ ক্লাস শুরু করুন</button>
     </div>
 
-    <div>
-      <h2>2. Serve an HTML template</h2>
-      <p>We'll set up the project to serve static HTML template files from the /public directory.</p>
-      <a href="/hello-html">/hello-html</a>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="brand">Teacher's Corner</div>
+        <button class="fs-btn" onclick="toggleFullScreen()">⛶ Full Screen</button>
     </div>
 
-    <div>
-      <h2>3. Add location data to the HTML template</h2>
-      <p>
-        We'll write an Edge Function to intercept a static HTML template and update it using geolocation data at the
-        edge.
-      </p>
-      <a href="/hello-html?method=transform">/hello-html?method=transform</a>
+    <div id="slider">
+        
+        <!-- Slide 1: Intro -->
+        <div class="slide">
+            <div class="card" style="border-top-color: #00e5ff; justify-content: center;">
+                <div style="font-size: clamp(3rem, 8vh, 6rem); margin-bottom: 15px;">🖼️🔗</div>
+                <h1 class="intro-title">ইমেজ, লিংক ও নেস্টেড লিস্ট!</h1>
+                <h2 class="intro-subtitle">ওয়েবপেজে ছবি আর টেলিপোর্টেশন ম্যাজিক!</h2>
+                <p style="font-size: clamp(1rem, 2.2vh, 1.5rem); color: #aaa;">a, img, ul, ol, li এবং মজার সব প্র্যাকটিস</p>
+            </div>
+        </div>
+
+        <!-- ======================= IMAGE SECTION ======================= -->
+
+        <!-- Slide 2: Concept Image -->
+        <div class="slide">
+            <div class="card" style="justify-content: center;">
+                <div class="badge concept">আলোচনা - ১</div>
+                <h1 style="color: #FBBF24; font-size: clamp(2.5rem, 5vh, 4rem); margin-bottom: 15px;">Image ট্যাগ কী? 📸</h1>
+                <div class="concept-text">
+                    নিজের সুন্দর সেলফি বা যেকোনো ছবি ওয়েবপেজে দেখানোর জাদুকরী ট্যাগ হলো <span class="concept-highlight">&lt;img&gt;</span>। এটি একটি Empty Tag, মানে এর কোনো ক্লোজিং ট্যাগ নেই!
+                </div>
+                <div class="concept-box">
+                    <p style="color: #4ADE80; font-size: clamp(1.2rem, 2.5vh, 1.8rem); margin-bottom: 10px;">৪টি প্রধান অ্যাট্রিবিউট:</p>
+                    <ul style="color: #fff; font-family: sans-serif; font-size: clamp(1rem, 2vh, 1.5rem); list-style: none;">
+                        <li><Tag>src</Tag> 👉 Source: ছবিটা কোথায় আছে (যেমন: "photo.jpg")</li>
+                        <li><Tag>width</Tag> & <Tag>height</Tag> 👉 ছবির সাইজ ঠিক করা।</li>
+                        <li><Tag>alt</Tag> 👉 Alternate text: নেট না থাকলে বা ছবি লোড না হলে এই লেখাটা দেখায়।</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Practice Basic Image -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ১</div>
+                <div class="question">তোমার "selfie.jpg" ছবিটি ওয়েবপেজে যুক্ত করার কোডটি লেখো! 🤳</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">My Profile</div>
+                        <div class="address-bar">localhost/profile.html</div>
+                    </div>
+                    <div class="browser-content" style="align-items: center;">
+                        <div class="img-placeholder" style="width: 150px; height: 150px; border-radius: 50%;">[📷 selfie.jpg]</div>
+                        <p style="margin-top: 10px;">Looking gorgeous today!</p>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer">
+                    <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"selfie.jpg"</span><span class="tag">&gt;</span><br>
+                    <span class="tag">&lt;p&gt;</span><span class="text">Looking gorgeous today!</span><span class="tag">&lt;/p&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Practice Image Size -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ২</div>
+                <div class="question">"book.png" ছবিটি অনেক বড়! এর প্রস্থ (width) 200 এবং উচ্চতা (height) 300 করে দাও। 📏</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Library</div>
+                        <div class="address-bar">localhost/book.html</div>
+                    </div>
+                    <div class="browser-content" style="align-items: center;">
+                        <div class="img-placeholder" style="width: 200px; height: 120px;">[📚 book.png]</div>
+                        <p style="font-size: 0.8em; color: gray;">(Width: 200, Height: 300)</p>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer">
+                    <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"book.png"</span> <span class="attr">width=</span><span class="val">"200"</span> <span class="attr">height=</span><span class="val">"300"</span><span class="tag">&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Practice Image Alt -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ৩</div>
+                <div class="question">ইন্টারনেট চলে গেছে! "exam.jpg" ছবিটির বদলে "No Internet!" লেখাটি দেখানোর জন্য <code>alt</code> ব্যবহার করো। 🚫</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Notice</div>
+                        <div class="address-bar">localhost/notice.html</div>
+                    </div>
+                    <div class="browser-content" style="align-items: center;">
+                        <div style="color: red; border: 1px solid red; padding: 10px; display: inline-block;">
+                            🖼️ No Internet!
+                        </div>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer">
+                    <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"exam.jpg"</span> <span class="attr">alt=</span><span class="val">"No Internet!"</span><span class="tag">&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Reverse Image -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge reverse">রিভার্স প্র্যাকটিস - ৪</div>
+                <div class="question" style="color: #FBBF24;">কোডটি দেখে ব্রাউজারের আউটপুটটি খাতায় আঁকো! ✍️</div>
+                <div class="code-question-box">
+                    <span class="tag">&lt;h2&gt;</span><span class="text">My Result:</span><span class="tag">&lt;/h2&gt;</span><br>
+                    <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"A_plus.png"</span> <span class="attr">width=</span><span class="val">"150"</span><span class="tag">&gt;</span>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">ব্রাউজারের আউটপুট দেখুন</button>
+                <div class="answer reverse-ans">
+                    <div class="browser-window">
+                        <div class="browser-header">
+                            <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                            <div class="browser-tab-title">Output</div>
+                        </div>
+                        <div class="browser-content">
+                            <h2>My Result:</h2>
+                            <div class="img-placeholder" style="width: 150px; height: 100px;">[A_plus.png]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= LINK (ANCHOR) SECTION ======================= -->
+
+        <!-- Slide 7: Concept Link -->
+        <div class="slide">
+            <div class="card" style="justify-content: center;">
+                <div class="badge concept">আলোচনা - ২</div>
+                <h1 style="color: #FBBF24; font-size: clamp(2.5rem, 5vh, 4rem); margin-bottom: 15px;">Anchor ট্যাগ (লিংক) 🔗</h1>
+                <div class="concept-text">
+                    এক ক্লিকে এক পেজ থেকে অন্য পেজে বা অন্য ওয়েবসাইটে যাওয়ার <b>টেলিপোর্টেশন পোর্টাল</b> হলো <span class="concept-highlight">&lt;a&gt;</span> (Anchor) ট্যাগ!
+                </div>
+                <div class="concept-box">
+                    <p style="color: #4ADE80; font-size: clamp(1.2rem, 2.5vh, 1.8rem); margin-bottom: 10px;">প্রধান অ্যাট্রিবিউট:</p>
+                    <ul style="color: #fff; font-family: sans-serif; font-size: clamp(1rem, 2vh, 1.5rem); list-style: none;">
+                        <li><Tag>href</Tag> 👉 Hypertext Reference: ক্লিক করলে কোথায় যাবে তার ঠিকানা (URL)।</li>
+                        <li><Tag>target="_blank"</Tag> 👉 লিংকটি ব্রাউজারের নতুন একটি ট্যাবে ওপেন করার জন্য।</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Practice Basic Link -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ৫</div>
+                <div class="question">"Search Here" লেখায় ক্লিক করলে google.com এ যাবে। 코ডটি লেখো! 🔍</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Cheat Code</div>
+                        <div class="address-bar">localhost/cheat.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <p>Don't know the answer? <a href="#">Search Here</a></p>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer">
+                    <span class="tag">&lt;p&gt;</span>
+                    <span class="text">Don't know the answer? </span>
+                    <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"http://google.com"</span><span class="tag">&gt;</span><span class="text">Search Here</span><span class="tag">&lt;/a&gt;</span>
+                    <span class="tag">&lt;/p&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Practice Target Blank -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ৬</div>
+                <div class="question">ক্লিক করলে "Teacher's Corner" পেজটি <b>নতুন ট্যাবে</b> ওপেন হবে! 🚀</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Tuition</div>
+                        <div class="address-bar">localhost/tuition.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <p>Need a good tutor? Visit <a href="#">Teacher's Corner Page</a></p>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer">
+                    <span class="tag">&lt;p&gt;</span><span class="text">Need a good tutor? Visit </span>
+                    <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"facebook.com/teacherscorner"</span> <span class="attr">target=</span><span class="val">"_blank"</span><span class="tag">&gt;</span><br>
+                    &nbsp;&nbsp;<span class="text">Teacher's Corner Page</span><br>
+                    <span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/p&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Concept Clickable Image -->
+        <div class="slide">
+            <div class="card" style="justify-content: center;">
+                <div class="badge concept">আলোচনা - ৩</div>
+                <h1 style="color: #FBBF24; font-size: clamp(2.5rem, 5vh, 4rem); margin-bottom: 15px;">ক্লিকেবল ইমেজ! 🖼️👆</h1>
+                <div class="concept-text">
+                    ছবির উপর ক্লিক করলেই আরেক পেজে চলে যাবে! এর জন্য <code>&lt;a&gt;</code> ট্যাগের পেটের ভেতর <code>&lt;img&gt;</code> ট্যাগকে ঢুকিয়ে দিতে হবে।
+                </div>
+                <div class="concept-box" style="text-align: center;">
+                    <code style="font-size: clamp(1.2rem, 3vh, 2.2rem); background: transparent; border: none; text-align: left; display: inline-block;">
+                        <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"লিংক"</span><span class="tag">&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"ছবি.jpg"</span><span class="tag">&gt;</span><br>
+                        <span class="tag">&lt;/a&gt;</span>
+                    </code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Practice Clickable Image -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ৭</div>
+                <div class="question">"play.png" বাটনের ছবিতে ক্লিক করলে "game.html" পেজে চলে যাবে। 코ড লেখো! 🎮</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Boring Class</div>
+                        <div class="address-bar">localhost/class.html</div>
+                    </div>
+                    <div class="browser-content" style="align-items: center;">
+                        <p>Click the image below to escape!</p>
+                        <a href="#"><div class="img-placeholder" style="width: 100px; height: 50px; cursor: pointer; border-color: blue;">[▶ play.png]</div></a>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer">
+                    <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"game.html"</span><span class="tag">&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"play.png"</span><span class="tag">&gt;</span><br>
+                    <span class="tag">&lt;/a&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Reverse Anchor + Strong -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge reverse">রিভার্স প্র্যাকটিস - ৮</div>
+                <div class="question" style="color: #FBBF24;">লিংক আর স্ট্রং ট্যাগ একসাথে! কোড দেখে ব্রাউজারের আউটপুটটি খাতায় আঁকো ✍️</div>
+                <div class="code-question-box">
+                    <span class="tag">&lt;p&gt;</span><br>
+                    &nbsp;&nbsp;<span class="text">Download the</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"syllabus.pdf"</span><span class="tag">&gt;</span>
+                    <span class="tag">&lt;strong&gt;</span><span class="text">New Syllabus</span><span class="tag">&lt;/strong&gt;</span>
+                    <span class="tag">&lt;/a&gt;</span><span class="text">!</span><br>
+                    <span class="tag">&lt;/p&gt;</span>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">ব্রাউজারের আউটপুট দেখুন</button>
+                <div class="answer reverse-ans">
+                    <div class="browser-window">
+                        <div class="browser-header">
+                            <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                            <div class="browser-tab-title">Output</div>
+                        </div>
+                        <div class="browser-content">
+                            <p>Download the <a href="#"><strong>New Syllabus</strong></a>!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= NESTED LIST SECTION ======================= -->
+
+        <!-- Slide 13: Concept Nested List -->
+        <div class="slide">
+            <div class="card" style="justify-content: center;">
+                <div class="badge concept">আলোচনা - ৪</div>
+                <h1 style="color: #FBBF24; font-size: clamp(2.5rem, 5vh, 4rem); margin-bottom: 15px;">নেস্টেড লিস্ট (Nested List)! 🪆</h1>
+                <div class="concept-text">
+                    বইয়ের অধ্যায়ের ভেতর যেমন সাব-টপিক থাকে, তেমনি লিস্টের পেটের ভেতর লিস্ট ঢোকালেই তাকে <b>Nested List</b> বলে।<br><br>
+                    <span style={{ color: '#F43F5E' }}>নিয়ম:</span> একটি <code>&lt;li&gt;</code> শেষ হওয়ার আগেই তার ভেতর নতুন একটি <code>&lt;ul&gt;</code> বা <code>&lt;ol&gt;</code> শুরু করতে হয়।
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Practice UL inside UL -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ৯</div>
+                <div class="question">আনঅর্ডারড লিস্টের ভেতর আরেকটি আনঅর্ডারড লিস্ট (ul এর ভেতর ul)! 📝</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Subjects</div>
+                        <div class="address-bar">localhost/ul_nested.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <ul>
+                            <li>Science
+                                <ul>
+                                    <li>Physics</li>
+                                    <li>Chemistry</li>
+                                </ul>
+                            </li>
+                            <li>Commerce</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer"><span class="tag">&lt;ul&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Science</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;ul&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Physics</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Chemistry</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/ul&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Commerce</span><span class="tag">&lt;/li&gt;</span><br>
+<span class="tag">&lt;/ul&gt;</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Practice OL inside OL -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ১০</div>
+                <div class="question">অর্ডারড লিস্টের ভেতর অর্ডারড লিস্ট (ol এর ভেতর ol)! type="A" ব্যবহার করো। 🔢</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Routine</div>
+                        <div class="address-bar">localhost/ol_nested.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <ol>
+                            <li>Day 1
+                                <ol type="A">
+                                    <li>ICT Exam</li>
+                                    <li>Math Exam</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer"><span class="tag">&lt;ol&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Day 1</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;ol</span> <span class="attr">type=</span><span class="val">"A"</span><span class="tag">&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">ICT Exam</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Math Exam</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/ol&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;/li&gt;</span><br>
+<span class="tag">&lt;/ol&gt;</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Practice UL inside OL -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ১১</div>
+                <div class="question">મિક্সড নেস্টেড লিস্ট! সিরিয়ালের (ol) ভেতর বুলেট (ul) ঢোকাও। 🤯</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Steps</div>
+                        <div class="address-bar">localhost/mixed_nested.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <ol>
+                            <li>Open Book</li>
+                            <li>Start crying
+                                <ul>
+                                    <li>Syllabus is huge!</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer"><span class="tag">&lt;ol&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Open Book</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Start crying</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;ul&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Syllabus is huge!</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/ul&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;/li&gt;</span><br>
+<span class="tag">&lt;/ol&gt;</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Reverse Nested List -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge reverse">রিভার্স প্র্যাকটিস - ১২</div>
+                <div class="question" style="color: #FBBF24;">কোড দেখে ব্রাউজারের আউটপুটটি খাতায় আঁকো ✍️</div>
+                <div class="code-question-box">
+                    <span class="tag">&lt;ul&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Web Dev</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;ol</span> <span class="attr">type=</span><span class="val">"I"</span><span class="tag">&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">HTML</span><span class="tag">&lt;/li&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/ol&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;/li&gt;</span><br>
+                    <span class="tag">&lt;/ul&gt;</span>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">ব্রাউজারের আউটপুট দেখুন</button>
+                <div class="answer reverse-ans">
+                    <div class="browser-window">
+                        <div class="browser-header">
+                            <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                            <div class="browser-tab-title">Output</div>
+                        </div>
+                        <div class="browser-content">
+                            <ul>
+                                <li>Web Dev
+                                    <ol type="I">
+                                        <li>HTML</li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Practice List with Links -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ১৩</div>
+                <div class="question">লিস্টের ভেতরে লিংক (Anchor)! লিস্টের আইটেমগুলোতে ক্লিক করা যাবে। 🔗</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Menu</div>
+                        <div class="address-bar">localhost/menu.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <ul>
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer"><span class="tag">&lt;ul&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"home.html"</span><span class="tag">&gt;</span><span class="text">Home</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"about.html"</span><span class="tag">&gt;</span><span class="text">About Us</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+<span class="tag">&lt;/ul&gt;</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Reverse List with Links -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge reverse">রিভার্স প্র্যাকটিস - ১৪</div>
+                <div class="question" style="color: #FBBF24;">লিস্টের ভেতর লিংক! আউটপুটটি কেমন হবে? ✍️</div>
+                <div class="code-question-box">
+                    <span class="tag">&lt;ol&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Search on </span>
+                    <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"google.com"</span><span class="tag">&gt;</span><span class="text">Google</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+                    <span class="tag">&lt;/ol&gt;</span>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">ব্রাউজারের আউটপুট দেখুন</button>
+                <div class="answer reverse-ans">
+                    <div class="browser-window">
+                        <div class="browser-header">
+                            <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                            <div class="browser-tab-title">Output</div>
+                        </div>
+                        <div class="browser-content">
+                            <ol><li>Search on <a href="#">Google</a></li></ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Concept Image inside List -->
+        <div class="slide">
+            <div class="card" style="justify-content: center;">
+                <div class="badge concept">আলোচনা - ৫</div>
+                <h1 style="color: #FBBF24; font-size: clamp(2.5rem, 5vh, 4rem); margin-bottom: 15px;">লিস্টের ভেতর ইমেজ! 🖼️</h1>
+                <div class="concept-text">
+                    লিস্টের আইটেম (<code>&lt;li&gt;</code>) এর ভেতর শুধু লেখাই নয়, চাইলে ছবি (<code>&lt;img&gt;</code>) বা অন্য যেকোনো ট্যাগও রাখা যায়। গ্যালারি বানাতে এটি খুব কাজে লাগে!
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 21: Practice Image inside List -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge">প্র্যাকটিস - ১৫</div>
+                <div class="question">লিস্টের আইটেম হিসেবে একটি ছবি যুক্ত করো! 📸</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Gallery</div>
+                        <div class="address-bar">localhost/gallery.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <ul>
+                            <li>My Setup:</li>
+                            <li><div class="img-placeholder" style="width: 100px; height: 60px;">[pc.png]</div></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer"><span class="tag">&lt;ul&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">My Setup:</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"pc.png"</span><span class="tag">&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+<span class="tag">&lt;/ul&gt;</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 22: Mini Boss -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge" style="background:#f59e0b; color:#fff;">Mini Boss 🧛‍♂️</div>
+                <div class="question">Heading, List, Anchor এবং Image সব মিলিয়ে এই আউটপুটটি তৈরি করো! 🤯</div>
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">Profile</div>
+                        <div class="address-bar">localhost/mini_boss.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <h3>My Socials</h3>
+                        <ul>
+                            <li><a href="fb.com">Facebook</a></li>
+                            <li><a href="insta.com"><div class="img-placeholder" style="width:60px; height:20px; font-size:0.6rem; display:inline-flex;">[ig.jpg]</div></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer"><span class="tag">&lt;h3&gt;</span><span class="text">My Socials</span><span class="tag">&lt;/h3&gt;</span><br>
+<span class="tag">&lt;ul&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"fb.com"</span><span class="tag">&gt;</span><span class="text">Facebook</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+  &nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"insta.com"</span><span class="tag">&gt;</span><span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"ig.jpg"</span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+<span class="tag">&lt;/ul&gt;</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 23: Mega Boss (The Ultimate Final Exam) -->
+        <div class="slide">
+            <div class="card">
+                <div class="badge" style="background:#ff1744; color:#fff;">The Mega Boss 🐉</div>
+                <div class="question">পুরো পেজের কোড একসাথে লেখো! (Nested List, Image, Link, Bold) 💪</div>
+                
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="mac-dots"><div class="mac-dot red"></div><div class="mac-dot yellow"></div><div class="mac-dot green"></div></div>
+                        <div class="browser-tab-title">HSC Survival Guide</div>
+                        <div class="address-bar">localhost/boss.html</div>
+                    </div>
+                    <div class="browser-content">
+                        <h2>Survival Steps</h2>
+                        <ol>
+                            <li>Open <a href="book.pdf"><b>Book</b></a></li>
+                            <li>Look at the syllabus:
+                                <ul>
+                                    <li><div class="img-placeholder" style="width: 80px; height: 30px; font-size:0.6rem; display:inline-flex;">[cry.gif]</div></li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <button class="show-ans-btn" onclick="revealAnswer(this)">সঠিক কোড দেখুন</button>
+                <div class="answer"><span class="tag">&lt;html&gt;</span><br>
+  <span class="tag">&lt;body&gt;</span><br>
+    &nbsp;&nbsp;<span class="tag">&lt;h2&gt;</span><span class="text">Survival Steps</span><span class="tag">&lt;/h2&gt;</span><br>
+    &nbsp;&nbsp;<span class="tag">&lt;ol&gt;</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Open </span><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"book.pdf"</span><span class="tag">&gt;</span><span class="tag">&lt;b&gt;</span><span class="text">Book</span><span class="tag">&lt;/b&gt;</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="text">Look at the syllabus:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;ul&gt;</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span><span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"cry.gif"</span><span class="tag">&gt;</span><span class="tag">&lt;/li&gt;</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/ul&gt;</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/li&gt;</span><br>
+    &nbsp;&nbsp;<span class="tag">&lt;/ol&gt;</span><br>
+  <span class="tag">&lt;/body&gt;</span><br>
+<span class="tag">&lt;/html&gt;</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 24: Outro Slide -->
+        <div class="slide">
+            <div class="card" style="border-top-color: #ffcc00; justify-content: center;">
+                <h1 class="outro-title">Teacher's Corner 🎓</h1>
+                <h2 class="outro-instructor">বইয়ের পড়া ভুলে গেলেও কোডিং ভুললে চলবে না! 😂</h2>
+            </div>
+        </div>
+
     </div>
-  </body>
+
+    <!-- Navigation Controls -->
+    <div class="controls" id="nav-controls" style="display:none;">
+        <button class="nav-btn" onclick="prevSlide()">◀</button>
+        <span class="counter" id="counter">1 / 24</span>
+        <button class="nav-btn" onclick="nextSlide()">▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slider = document.getElementById('slider');
+        const counter = document.getElementById('counter');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            counter.innerText = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset all answers when changing slides
+            document.querySelectorAll('.answer').forEach(ans => ans.style.display = 'none');
+            document.querySelectorAll('.show-ans-btn').forEach(btn => {
+                btn.style.display = 'inline-block';
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Reveal Answer Logic
+        function revealAnswer(btn) {
+            const answerDiv = btn.nextElementSibling;
+            btn.style.display = 'none';
+            answerDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                const card = answerDiv.closest('.card');
+                if(card) { card.scrollTop = card.scrollHeight; }
+            }, 50);
+        }
+
+        // Welcome Screen & Full Screen Logic
+        function startPresentation() {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('nav-controls').style.display = 'flex';
+            toggleFullScreen();
+        }
+
+        function toggleFullScreen() {
+            const doc = window.document;
+            const docEl = doc.documentElement;
+            const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            
+            if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                if(requestFullScreen) requestFullScreen.call(docEl).catch(err=>{});
+            }
+            try { screen.orientation.lock('landscape').catch(()=>{}); } catch(e){}
+        }
+
+        // Touch & Swipe Logic
+        let startX = 0; let endX = 0;
+        slider.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }, {passive: true});
+        slider.addEventListener('touchend', e => {
+            endX = e.changedTouches[0].screenX;
+            if (startX - endX > 50) nextSlide(); 
+            if (endX - startX > 50) prevSlide(); 
+        }, {passive: true});
+
+        // Keyboard Logic
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+        });
+    </script>
+</body>
 </html>
+
+
+
